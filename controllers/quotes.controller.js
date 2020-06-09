@@ -11,6 +11,20 @@ class QuotesController {
   async index(request, response) {
     return render("quotes", response);
   }
+
+  async get(request, response) {
+    return response.send(db);
+  }
+
+  async add(request, response) {
+    const { body: quote } = request;
+    const lastQuote = db[db.length - 1];
+    const { id } = lastQuote;
+    quote.id = id + 1;
+    db.push(quote);
+    fs.writeFileSync(DB_PATH, JSON.stringify(db));
+    return response.status(201).send();
+  }
 }
 
 module.exports = new QuotesController();
