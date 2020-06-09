@@ -1,6 +1,12 @@
+const path = require("path");
+
+function render(file, response) {
+  return response.sendFile(path.join(__dirname + `/../views/${file}.html`));
+}
+
 class HomeController {
   async index(request, response) {
-    return response.send({ message: "Hello Node.js" });
+    return render("home", response);
   }
 }
 
