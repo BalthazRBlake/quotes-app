@@ -8,6 +8,7 @@ server.use(express.static("./public"));
 server.use(express.json())
 
 server.get("/", HomeRoutes);
+//server.get("/about", HomeRoutes); // should it work without this line?
 server.use(NotFoundMiddleware);
 
 server.listen(PORT, () => {
